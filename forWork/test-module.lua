@@ -3,6 +3,7 @@ local _M = {}
 local difftbl
 local pairsByKeys
 local trvtbl
+local readFile
 
 local DIFFTBL = {
 	VISIBLE = nil,
@@ -100,9 +101,17 @@ pairsByKeys = function (t, f)
 	end
 end
 
+readFile = function (filePath)
+	local f = assert(io.open(filePath, "r"))
+	local t = f:read("a")
+	f:close()
+	return t
+end
+
 _M = {
 	DIFFTBL = DIFFTBL,
 	difftbl = difftbl,
 	trvtbl = trvtbl,
+	readFile = readFile,
 }
 return _M
